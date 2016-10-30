@@ -30,7 +30,7 @@ class AsynchronousQueue(object):
             self.launch_task()
     
     def size(self):
-        """How many tasks in local_queue have not been launched into threads
+        """Return how many tasks in local_queue have not been launched into threads
         for execution
         
         :returns: How many tasks have yet to be launched into execution threads
@@ -40,7 +40,7 @@ class AsynchronousQueue(object):
         return self.local_queue.size()
     
     def is_running(self):
-        """Returns the running variable which signals whether the queue is still running
+        """Return boolean signal of whether the queue is still executing/has tasks to execute
         
         :returns: Boolean of whether the queue have running tasks
         :rtype: Boolean
@@ -49,7 +49,7 @@ class AsynchronousQueue(object):
         return self.running
     
     def in_flight(self):
-        """This function returns how many running_thread_count there are, which also indicates
+        """Return how many running_thread_count there are, which also indicates
         exactly how many tasks are executing
         
         :returns: How many tasks are currently executing
@@ -91,7 +91,7 @@ class AsynchronousQueue(object):
                 self.callback()
     
     def launch_task(self):
-        """This function creates a new thread to execute the next task from the queue
+        """Create a new thread to execute the next task from the queue
         """
         
         self.running_thread_count += 1
