@@ -1,3 +1,5 @@
+This file is for the developers to write and organize their notes on the status and further development of the project.
+
 * Task
 Your task is to write an asynchronous queuing library. You can write this task in the language of your choice.
 The following signatures explain the semantics you must fulfill, but feel free to add additional features that you feel are pragmatic, elegant, or awesome opportunities to show off.
