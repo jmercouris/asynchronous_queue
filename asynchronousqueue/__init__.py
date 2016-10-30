@@ -1,4 +1,5 @@
 import _thread
+from asynchronousqueue.local_queue import LocalQueue
 
 
 class AsynchronousQueue(object):
@@ -46,23 +47,6 @@ class AsynchronousQueue(object):
         except Exception as e:
             print(e)
 
-
-class LocalQueue(object):
-    """Documentation for Queue
-    
-    """
-    def __init__(self):
-        super(LocalQueue, self).__init__()
-        self.elements = []
-    
-    def enqueue(self, element):
-        self.elements.insert(0, element)
-    
-    def dequeue(self):
-        return self.elements.pop()
-    
-    def size(self):
-        return len(self.elements)
 
 
 class Task(object):
