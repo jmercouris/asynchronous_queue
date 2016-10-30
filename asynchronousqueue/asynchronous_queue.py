@@ -3,13 +3,14 @@ from asynchronousqueue.local_queue import LocalQueue
 
 
 class AsynchronousQueue(object):
-    """The AsynchronousQueue class uses a queue to keep track of tasks that it must
-    complete, it launches tasks in a first in first out mode. For every task that the
-    AsynchronousQueue class executes, it creates a new thread. Upon completion of the
-    task, the AsynchronousQueue is notified via the task_notify function. This allows
-    the AsynchronousQueue to keep track of how many threads (tasks) have been launched,
-    and how many have been completed. This allows the AsynchronousQueue to keep limit
-    the count of parallel executing threads to a predefined threshold (var parallelism).
+    """The AsynchronousQueue class uses a queue to keep track of tasks that it
+    must complete, it launches tasks in a first in first out mode. For every
+    task that the AsynchronousQueue class executes, it creates a new thread.
+    Upon completion of the task, the AsynchronousQueue is notified via the
+    task_notify function. This allows the AsynchronousQueue to keep track of how
+    many threads (tasks) have been launched, and how many have been completed.
+    This allows the AsynchronousQueue to keep limit the count of parallel
+    executing threads to a predefined threshold (var parallelism).
     """
     
     def __init__(self, parallelism):
