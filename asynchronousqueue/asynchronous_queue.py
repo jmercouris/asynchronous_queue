@@ -22,6 +22,9 @@ class AsynchronousQueue(object):
         super(AsynchronousQueue, self).__init__()
         self.local_queue = LocalQueue()
         self.parallelism = parallelism
+        # Check that parallelism is at least 1
+        if (self.parallelism < 0):
+            self.parallelism = 1
         self.running_thread_count = 0
         self.callback = None
         self.running = False

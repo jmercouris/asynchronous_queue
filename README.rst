@@ -43,7 +43,9 @@ Notes
 --------------------------------------------------------------------------------
 This Library is built with no external dependencies from the default Python
 library. The name AsynchronousQueue was chosen for the library name to avoid
-namespace collisions with the default Python Queue module.
+namespace collisions with the default Python Queue module. This module could
+be further expanded by allowing for the passing of arguments to the callback
+and the function to be executed.
 
 License
 --------------------------------------------------------------------------------
