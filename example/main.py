@@ -9,6 +9,7 @@ def function():
 def callback():
     print('Received Callback')
 
+
 queue = Queue(1)
 task = Task(function, callback)
 
@@ -16,3 +17,5 @@ queue.add_task(task)
 queue.start()
 
 
+while 1:
+    pass

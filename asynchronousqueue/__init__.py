@@ -1,3 +1,6 @@
+import _thread
+
+
 class AsynchronousQueue(object):
     """Documentation for Queue
     
@@ -6,25 +9,42 @@ class AsynchronousQueue(object):
         super(AsynchronousQueue, self).__init__()
         self.local_queue = LocalQueue()
         self.parallelism = parallelism
+        self.running = False
     
     def start(self):
+        self.running = True  # Change status to Running
+        
         while(self.local_queue.size() > 0):
-            self.local_queue.dequeue().execute()
+            self.launch_task()
+        
+        self.running = False  # Execution Complete
     
     def size(self):
         return self.local_queue.size()
     
     def is_running(self):
-        pass
+        return self.running
     
     def in_flight(self):
         pass
     
     def add_task(self, task):
+        task.notify_queue = self.task_notify
         self.local_queue.enqueue(task)
     
     def add_callback(self, callback):
         self.callback = callback
+    
+    def task_notify(self):
+        print('Queue Notified Task completed')
+    
+    def launch_task(self):
+        print('Launch task')
+        task = self.local_queue.dequeue()
+        try:
+            _thread.start_new_thread(task.execute, ())
+        except Exception as e:
+            print(e)
 
 
 class LocalQueue(object):
@@ -55,5 +75,9 @@ class Task(object):
         self.callback = callback
     
     def execute(self):
+        print('Executing Task')
         self.function()
         self.callback()
+        self.notify_queue()
+        
+
