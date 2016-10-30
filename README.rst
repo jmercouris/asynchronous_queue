@@ -7,9 +7,6 @@ second, function3, third, etc. What is not guaranteed is that the functions will
 terminate in order, that is, there is no blocking for function start based on the
 completion of a previous function.
 
-The degree of parallelism (how many functions may run concurrently) is controlled
-via a constructor parameter of the queue class.
-
 Requirements
 --------------------------------------------------------------------------------
 The requirements to run this software are:
@@ -31,3 +28,7 @@ Notes
 --------------------------------------------------------------------------------
 This Library is built with no external dependencies from the default python
 library.
+
+Version
+--------------------------------------------------------------------------------
+0.1-alpha
