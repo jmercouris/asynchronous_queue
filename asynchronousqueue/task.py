@@ -19,8 +19,15 @@ class Task(object):
         """
         
         print('Executing Task: {}'.format(self.identifier))
-        self.function()
-        self.callback()
+        
+        '''In the event of failure, at least notify the queue that it may launch
+        a new thread
+        '''
+        try:
+            self.function()
+            self.callback()
+        except Exception as e:
+            print(e)
         self.notify_queue()
         
 
