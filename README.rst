@@ -19,6 +19,11 @@ To run the example code without installing this module, simply navigate to the
 project root directory (the directory that contains the README.rst). Then execute
 the command `python -m example.main` to run the example as a module.
 
+Running the Tests
+--------------------------------------------------------------------------------
+To run the tests without installing this module, navigate to the root project
+directory and execute `python -m pytest test/`.
+
 High Level Architecture
 --------------------------------------------------------------------------------
 The AsynchronousQueue class has a LocalQueue object. This object behaves like
