@@ -1,4 +1,4 @@
-from asynchronousqueue import AsynchronousQueue as Queue
+from asynchronousqueue.asynchronous_queue import AsynchronousQueue as Queue
 from asynchronousqueue.task import Task
 import time
 
@@ -7,7 +7,7 @@ task_count = 5
 
 
 def function():
-    time.sleep(5)
+    time.sleep(1)
     print('Executed Function')
 
 
@@ -22,5 +22,8 @@ for i in range(0, task_count):
 
 queue.start()
 
-while 1:
+
+while queue.is_running():
     pass
+
+
