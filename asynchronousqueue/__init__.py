@@ -1,9 +1,9 @@
-class Queue(object):
+class AsynchronousQueue(object):
     """Documentation for Queue
     
     """
     def __init__(self, parallelism):
-        super(Queue, self).__init__()
+        super(AsynchronousQueue, self).__init__()
         print('Hello World')
     
     def start():
