@@ -27,7 +27,8 @@ This software is licensed under the GNU GPL V3. Which can be found
 Notes
 --------------------------------------------------------------------------------
 This Library is built with no external dependencies from the default python
-library.
+library. The name AsynchronousQueue was chosen for the library name to avoid
+namespace collisions with the default Python Queue module.
 
 Version
 --------------------------------------------------------------------------------
