@@ -49,6 +49,7 @@ class AsynchronousQueue(object):
     
     def launch_task(self):
         self.running_thread_count += 1
+        
         task = self.local_queue.dequeue()
         try:
             threading.Thread(target=task.execute).start()
