@@ -19,8 +19,8 @@ def callback():
     """
     print('Received Callback')
 
-
-queue = Queue(parallelism) # Create our AsynchronousQueue
+# Create our AsynchronousQueue
+queue = Queue(parallelism)
 
 # Generate a set of Tasks
 for i in range(0, task_count):
