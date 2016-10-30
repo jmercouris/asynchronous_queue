@@ -1,5 +1,5 @@
 from asynchronousqueue import AsynchronousQueue as Queue
-from asynchronousqueue import Task
+from asynchronousqueue.task import Task
 
 
 def function():

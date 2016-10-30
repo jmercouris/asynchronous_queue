@@ -1,4 +1,4 @@
-import _thread
+import threading
 from asynchronousqueue.local_queue import LocalQueue
 
 
@@ -10,6 +10,8 @@ class AsynchronousQueue(object):
         super(AsynchronousQueue, self).__init__()
         self.local_queue = LocalQueue()
         self.parallelism = parallelism
+        self.running_thread_count = 0
+        self.callback = None
         self.running = False
     
     def start(self):
@@ -17,8 +19,6 @@ class AsynchronousQueue(object):
         
         while(self.local_queue.size() > 0):
             self.launch_task()
-        
-        self.running = False  # Execution Complete
     
     def size(self):
         return self.local_queue.size()
@@ -37,31 +37,16 @@ class AsynchronousQueue(object):
         self.callback = callback
     
     def task_notify(self):
-        print('Queue Notified Task completed')
+        # Launch New Tasks if Necessary
+        if (self.local_queue.size() == 0):
+            self.running = False
+            if(self.callback is not None):
+                self.callback()
     
     def launch_task(self):
         print('Launch task')
         task = self.local_queue.dequeue()
         try:
-            _thread.start_new_thread(task.execute, ())
+            threading.Thread(target=task.execute).start()
         except Exception as e:
             print(e)
-
-
-
-class Task(object):
-    """Documentation for Task
-    
-    """
-    def __init__(self, function, callback):
-        super(Task, self).__init__()
-        self.function = function
-        self.callback = callback
-    
-    def execute(self):
-        print('Executing Task')
-        self.function()
-        self.callback()
-        self.notify_queue()
-        
-
