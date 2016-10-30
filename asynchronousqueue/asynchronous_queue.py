@@ -24,7 +24,7 @@ class AsynchronousQueue(object):
         self.parallelism = parallelism
         # Check that parallelism is at least 1
         if (self.parallelism < 0):
-            self.parallelism = 1
+            raise ValueError('Parallelism must 1 or greater')
         self.running_thread_count = 0
         self.callback = None
         self.running = False
