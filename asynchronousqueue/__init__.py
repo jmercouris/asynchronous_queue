@@ -17,7 +17,7 @@ class AsynchronousQueue(object):
     def start(self):
         self.running = True  # Change status to Running
         
-        while(self.local_queue.size() > 0):
+        while(self.running_thread_count < self.parallelism and self.local_queue.size() > 0):
             self.launch_task()
     
     def size(self):
@@ -27,7 +27,7 @@ class AsynchronousQueue(object):
         return self.running
     
     def in_flight(self):
-        pass
+        return self.running_thread_count
     
     def add_task(self, task):
         task.notify_queue = self.task_notify
@@ -37,14 +37,18 @@ class AsynchronousQueue(object):
         self.callback = callback
     
     def task_notify(self):
-        # Launch New Tasks if Necessary
+        self.running_thread_count -= 1
+        
+        while(self.running_thread_count < self.parallelism and self.local_queue.size() > 0):
+            self.launch_task()
+        
         if (self.local_queue.size() == 0):
             self.running = False
             if(self.callback is not None):
                 self.callback()
     
     def launch_task(self):
-        print('Launch task')
+        self.running_thread_count += 1
         task = self.local_queue.dequeue()
         try:
             threading.Thread(target=task.execute).start()
