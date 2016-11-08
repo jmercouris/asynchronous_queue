@@ -11,6 +11,12 @@ class AsynchronousQueue(object):
     many threads (tasks) have been launched, and how many have been completed.
     This allows the AsynchronousQueue to keep limit the count of parallel
     executing threads to a predefined threshold (var parallelism).
+    
+    :ivar local_queue: Tasks within the queue
+    :ivar parallelism: Number of asynchronous tasks executing
+    :ivar running_thread_count: Number of currently executing tasks/threads
+    :ivar callback: The callback invoked upon completion of all tasks
+    :ivar running: Whether the queue is consuming tasks or not
     """
     
     def __init__(self, parallelism):
@@ -74,6 +80,7 @@ class AsynchronousQueue(object):
         :param task: The task object
         """
         
+        # Add a callback to the queue to notify the queue of task completion
         task.notify_queue = self.task_notify
         self.local_queue.enqueue(task)
     
