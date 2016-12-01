@@ -6,10 +6,11 @@ parallelism = 2  # How many simultaneous threads do we permit
 task_count = 5  # How many demonstration tasks should we create
 
 
-def function():
+def function(msg):
     """ Sample Function to be executed as a Task
     """
     
+    print(msg)
     time.sleep(1)
     print('Executed Function')
 
@@ -24,7 +25,7 @@ queue = Queue(parallelism)
 
 # Generate a set of Tasks
 for i in range(0, task_count):
-    queue.add_task(Task('Task {}'.format(i), function, callback))
+    queue.add_task(Task('Task {}'.format(i), function, callback, 'message'))
 
 # Start executing the Tasks
 queue.start()
