@@ -91,3 +91,6 @@ ENV/
 
 # Ignore compiled rst files
 README.html
+
+# Ignore emacs org files
+*.org
